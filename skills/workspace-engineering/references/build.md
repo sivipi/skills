@@ -29,7 +29,7 @@ Place each check at the earliest stage that has enough information to make it me
 | Staging or preview | Validate the integrated result, realistic workflows, performance, or load when relevant. |
 | Release | Qualify the exact artifact or revision with additional expensive tests where justified, then check delivery and recovery. Heavy testing for a production release can run in isolation before deployment; it need not target live users. |
 
-Use the baseline's explicit test-selection policy and shared local/CI commands. Explain what each later stage adds, its cost, and why it cannot usefully move earlier.
+Use one shared implementation for classification, test selection, and validation, with local/CI adapters only where needed. Explain what each later stage adds, its cost, and why it cannot usefully move earlier.
 
 ## Verify the mechanism
 
@@ -38,6 +38,10 @@ Use the baseline's explicit test-selection policy and shared local/CI commands. 
 3. Verify failure leaves recoverable state and useful diagnostics. For mutation workflows, verify a safe resume, cleanup, or rollback path.
 4. Inspect the delivered artifact where appearance or presentation matters. Do not infer visual correctness from a tool's success response.
 5. Show the user the working entrypoint, validation command, and remaining human decisions.
+
+For a pre-push gate, use real pushes to a disposable local bare remote: commit a known defect, leave an unstaged fix, and prove the push is rejected without advancing the receiver. Then commit the fix and prove the push succeeds. Cover an outgoing ref different from HEAD; validate it or reject it explicitly. Record the tested outgoing and receiving revisions, not just a direct hook invocation.
+
+For installed hooks, tools, or skills, exercise fresh and existing clones, linked worktrees, repeated setup, and conflicting configuration in disposable fixtures. Verify discovery and invocation, preserve unrelated settings, and document contributor rollout; mark untested contexts explicitly.
 
 Do not disable a failing rule, repeatedly retry an unchanged failure, or expand into unrelated repairs. Diagnose failures within scope; stop the affected action when progress requires missing access, a policy decision, or new authorization, and continue independent work where possible.
 

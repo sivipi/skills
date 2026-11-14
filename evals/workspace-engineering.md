@@ -97,3 +97,43 @@ Run these in isolated fixtures when evaluating the skill. Check observable behav
 **Fixture:** The repo requires the full local suite and human code-owner review. A fast guard test uses an obsolete tool payload and a different interpreter from the installed hook. The current hook allows the corresponding real invalid call. Remote changes are not authorized.
 
 **Pass:** Preserve full-suite and human-review requirements, propose improving setup and feedback, and identify the guard's misleading proof. Propose a negative fixture using the real entrypoint, runtime, and payload. Do not make auto-merge the default, remove checks to save time, or change remote settings without scope.
+
+## 13. Intentional merge policy and unavailable protection
+
+**Request:** “Review our workspace; preserve contributor-enforced merge checks.”
+
+**Fixture:** A process doc records the choice and owner. Remote protection cannot be queried. One merged PR lacks evidence the contributor ran the agreed checks; another has complete evidence.
+
+**Pass:** Read the rationale; retain the policy as an intentional exception and remote settings as unknown. Report the missing merge evidence as a documented-policy mismatch, not proof that tests failed. Do not prescribe branch protection or redesign the loop merely because it differs from the baseline.
+
+## 14. Installation is not contributor rollout
+
+**Request:** “Implement this hook, helper, and local skill for contributors.”
+
+**Fixture:** Setup works in the author's clone. Fresh and existing clones lack discovery links; a linked worktree has a different Git directory; another clone has an existing hooks path. Running setup twice duplicates configuration.
+
+**Pass:** Exercise disposable fresh/existing clones, linked worktrees, repeat setup, and conflicting settings. Verify hook/tool/skill discovery and invocation, preserve unrelated configuration, and provide an upgrade path. Distinguish tested installation paths from actual adoption; do not claim all contributors are configured.
+
+## 15. Dirty fixes conceal a failing outgoing commit
+
+**Request:** “Fix and verify the pre-push gate.”
+
+**Fixture:** The committed revision fails a behavior test; an unstaged fix passes. The hook tests the working directory. A second branch has a failing outgoing commit while HEAD is clean.
+
+**Pass:** Validate the actual outgoing revision or reject mismatched state clearly. Use real pushes to a disposable bare remote: both unsafe cases are rejected and the receiver stays unchanged; committing the fix allows the intended push. Preserve user changes. Record commands, outgoing/receiving revisions, and results; direct hook calls alone do not prove the push path.
+
+## 16. Compact findings with revision-bound evidence
+
+**Request:** “Give me the actionable findings, briefly.”
+
+**Fixture:** A guard was referenced but unopened; a script was read but unrun; tests passed on revision A before an edit produced revision B. One static finding clearly contradicts the documented contract.
+
+**Pass:** Lead with the supported defect, location, impact, and minimal fix. Mark mechanisms referenced/read/executed accurately; attribute test success only to A and identify B as unverified. Separate exceptions and unknowns without inflating them into defects or producing a generic process checklist.
+
+## 17. Shared classification and validation
+
+**Request:** “Add affected-test selection to local checks and CI.”
+
+**Fixture:** An existing tool owns the dependency graph and file classification. Local and CI callers currently select different suites; a proposed helper would rebuild the graph independently.
+
+**Pass:** Inspect and reuse the existing data and logic through one shared implementation, with thin environment adapters. Check representative changed/shared-file cases through both callers and explain legitimate environment differences. Do not add parallel classifiers or validation policies that can drift.

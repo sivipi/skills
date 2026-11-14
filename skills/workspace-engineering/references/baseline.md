@@ -2,7 +2,7 @@
 
 Use this to propose how work should happen, not just to audit the current setup. Software development is the default focus. These are defaults for the target workspace's process, not permission to change every repository you inspect.
 
-In review mode, recommend missing practices. In build mode, implement the authorized scope and record remaining gaps. Preserve stricter requirements and identify conflicts with existing policies rather than silently changing them. Select actual commands from the target repo; label missing commands as work to implement, never as commands already available.
+In review mode, assess missing practices against documented rationale and explicit user exceptions; recommend warranted changes. In build mode, implement the authorized scope and record remaining gaps. Preserve existing policy, including intentional alternatives to these defaults. Select actual repo commands; label missing commands as proposed, never already available.
 
 ## Practices for every workspace
 
@@ -36,7 +36,7 @@ For browser tests, use stable semantic locators, await actions and assertions, a
 
 ### 4. Validate locally before pushing
 
-Require relevant local tests and applicable static checks before each push. Provide a documented command and wire a pre-push hook where supported. Run focused checks while iterating; fix failures and rerun the affected checks and required local gate on the final files before pushing. A later edit invalidates earlier evidence for affected behavior.
+Require relevant local tests and applicable static checks before each push. Provide a documented command and wire a pre-push hook where supported. Run focused checks while iterating; fix failures and rerun affected checks. The push gate must validate the outgoing commit, not unstaged fixes or an unrelated HEAD. Validate that revision in isolation or reject mismatches clearly; verify through the [disposable-push test](build.md#verify-the-mechanism).
 
 For a small repo, default to the full credential-free suite before push. For a larger repo, define an explicit selection policy covering changed flows, shared dependents, and mandatory checks, with broader coverage in CI. Do not narrow an existing full-suite requirement just to make the workflow faster. Keep cheap compilation and test-discovery failures local even when the actual integration test needs remote infrastructure.
 
@@ -44,7 +44,7 @@ Make this loop reproducible with pinned runtimes, safe repeatable setup, and con
 
 ### 5. Use CI as a merge gate
 
-For shared code repos, propose PRs and required CI checks protecting the integration branch. Reuse local validation and add the checks needing a controlled environment. Verify actual branch protection or rulesets and required status names; a workflow file or local hook alone does not protect main. Changing remote policy must be within the requested scope and authority.
+For shared code repos, default to PRs and required CI checks, while preserving explicit alternatives such as contributor-enforced merge checks. Reuse local validation and add checks needing a controlled environment. Verify remote protection separately from contributor policy; missing access is unknown, not proof of a defect. Changing policy must be within the requested scope and authority.
 
 Use draft PRs for unfinished work where supported; local checks precede marking ready. Record the behavior change, exact validation, and limits in the PR. Preserve the team's human-review policy. Automatic merging is optional and must wait for required checks on the current revision. Neither a prior green commit nor an empty/skipped job proves the change is ready.
 

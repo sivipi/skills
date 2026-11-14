@@ -9,7 +9,7 @@ Treat the workspace as a product for the person using it. Engineer the process t
 
 The central question: **What does this person still have to remember, repair, or explain that the workspace should handle?**
 
-The primary use case is writing code with agents. Actively propose a development process, including what is missing from the current workspace; do not stop at describing existing instructions. For nontechnical roles, adapt the same feedback and acceptance principles to their deliverables.
+The primary use case is writing code with agents. Assess the development process and propose improvements warranted by the evidence and request. Preserve explicit user exceptions; defaults are not a mandate to redesign every workspace. For nontechnical roles, adapt the same feedback and acceptance principles to their deliverables.
 
 ## 1. Establish the job
 
@@ -29,7 +29,7 @@ Choose one representative request and follow it from intake through execution, v
 Record what the user does, what the agent does, which tools act, what state is saved, and what proves completion. Compare intended practice with implementation and observed behavior. Keep these evidence labels distinct:
 
 - **Documented:** a rule or process says this should happen.
-- **Implemented:** a concrete mechanism exists and is wired into the path.
+- **Implemented:** a concrete mechanism exists and is wired into the inspected path; contributor rollout is separate evidence.
 - **Observed:** a run demonstrates the behavior for a named revision or artifact.
 - **Unknown:** evidence or access is missing. This is not proof of absence.
 
@@ -41,7 +41,7 @@ Read the [baseline process](references/baseline.md) in both review and build mod
 
 Make the proposed process concrete: trigger, steps, commands or tools, pass/fail criteria, failure response, owner, and completion evidence. Map each applicable baseline item to an existing mechanism, a recommended change, an explicit exception, or an unknown. Explain material deviations; do not silently omit a missing practice because the repo has never had it. Preserve stricter existing requirements.
 
-Group symptoms by their underlying cause. Prefer a shared utility, better input, clearer tool contract, or shorter procedure over adding another warning for the agent to remember. Remove redundant instructions and checks only when their purpose is preserved elsewhere.
+Group symptoms by their underlying cause. Prefer a shared utility, better input, clearer tool contract, or shorter procedure over another warning; before proposing a helper, check whether an in-repo tool already holds the data it needs. Reuse classification and validation logic across local checks and CI, with thin adapters for each caller. Remove redundancy only when its purpose is preserved.
 
 For each proposed change, specify:
 
@@ -58,7 +58,7 @@ Prioritize by user impact, recurrence, confidence, effort, and feedback delay. L
 
 ## 4. Review or implement
 
-For a **review**, deliver the current process in brief, the proposed working process, prioritized findings with evidence, and the next useful step. Preserve strong existing mechanisms and state what could not be checked. A process-document-only review should distinguish proposed controls from controls known to exist.
+For a **review**, lead with actionable defects and concise evidence, then intentional exceptions, unknowns, and the next useful step. Summarize the process only as needed to explain findings; propose a replacement loop when warranted. Preserve strong mechanisms. A process-document-only review must distinguish proposed controls from controls known to exist.
 
 For a **build or improvement**, use [build](references/build.md). Implement the authorized scope end to end. If the user wants a new workspace but the role or deliverable is still unknown, resolve that before choosing the stack. Do not turn every process problem into a software project.
 

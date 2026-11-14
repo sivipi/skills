@@ -2,7 +2,7 @@
 
 Use the representative task to guide inspection. Do not read an entire repository or every transcript just because they exist. Start with entrypoint instructions, relevant skills, process docs, tool contracts, validation commands, hooks, release configuration, and recent evidence.
 
-Assess the [baseline process](baseline.md), including practices absent from the current documentation. For code-writing workspaces, explicitly check test authoring for changed behavior, bug regression tests, final-file local validation before push, and required CI before merge. Return a proposed development loop with actual commands or identified implementation gaps, not just observations about the current loop.
+Assess the [baseline process](baseline.md) as defaults: test authoring, regression coverage, local validation, and merge checks. Read documented rationale before recommending policy changes. Separate defects from intentional exceptions and unknowns. Explicit contributor-enforced merge checks are a policy choice; unavailable branch-protection evidence is unknown, not automatically a gap. Preserve user exceptions and recommend changes within the requested scope.
 
 ## Inspect the seams
 
@@ -23,16 +23,27 @@ For consequential rules, record:
 
 `Intent → mechanism → wiring → failure signal → recovery → policy owner`
 
-Check the implementation and its callers. If authorized and feasible, exercise an isolated valid case and an invalid case. Preserve the raw result separately from the interpretation. If execution needs unavailable credentials or a live mutation, report the gap; static inspection is still useful.
+Check the implementation and its callers. For every project-owned check wired into a hook or CI, read its entrypoint and docs; when read-only and cheap, run it against a named integration-branch revision before judging it. If authorized and feasible, exercise isolated valid and invalid cases. Preserve raw results separately from interpretation; report unavailable credentials or unsafe execution as gaps.
 
-Look for false confidence:
+Reproduce the gate's version, configuration, rule selection, exclusions, and tracked-file set; do not sweep in untracked directories or nested worktrees. State any difference next to the reported number. Report the coverage denominator, including counts of checked files and suppressed scope (exclude lists and inline markers), with suppression owners or unknown ownership, separately from violations.
+
+Verify actual branch protection and required statuses. Sample recent merged PRs and record required-check and review states at merge, with revision and timestamp, as **Observed** evidence. Current settings or later reruns cannot establish those historical states; mark unavailable history **Unknown**.
+
+Check rollout for hooks, tools, and local skills across fresh clones, existing clones, linked worktrees, repeated setup, and conflicting configuration. Inspect installation and upgrade paths; exercise safe disposable cases where feasible. Record tested contexts and remaining unknowns. A working installation in one checkout does not prove installation for every contributor; setup must preserve or explicitly reconcile existing configuration.
+
+## Compare gate lists with what exists
+
+When a required gate aggregates an enumerated list—job dependencies, a test matrix, path filters, or packages—diff it against all defined suites and code that should be covered, including directories containing tests. Report anything in neither the gate nor a documented exception. Recommend a self-check that fails when a new suite is not registered.
+
+## Look for false confidence
 
 - A tenant test changes the visible selection but never verifies the server request or returned tenant data.
 - A test and implementation share the same incorrect assumption. Find an independent expected result: a known fixture, specification, measured dimension, or trusted service response.
 - Missing, skipped, empty, or flaky results are presented as success.
 - A helper prints an error but exits successfully, leaving its caller to continue.
-- A check exists but its hook is uninstalled, its workflow never runs, or its remote status is not required.
-- A guard checks a mutable working copy while the action operates on a different revision or artifact.
+- A check is claimed as enforced but its hook is uninstalled, its workflow never runs, or its remote status is not required by the stated policy.
+- A local-only check is called ineffective without measuring drift on the integration branch. A clean run means the local gate is holding for that measured scope; report remote enforcement as optional insurance. Report measured violations and their count as **Observed**; an unrun check is **Unknown**, not evidence of drift.
+- A guard checks a mutable working copy while the action operates on a different revision or artifact. For pre-push checks, unstaged fixes must not hide a failing outgoing commit; use the disposable-push proof in [build](build.md#verify-the-mechanism).
 - A check is satisfied by suppressions, shrinking the denominator, or altering its own threshold.
 
 For an existing read-only review, do not mutate the source or trigger deployments to prove a point. Use existing evidence, read-only inspection, or isolated temporary fixtures within the authorized scope.
@@ -47,4 +58,4 @@ Distinguish three kinds of improvement:
 
 Do not translate every judgment into a proposed check. Whether a layout communicates the idea or a feature is worth building can remain a person's decision. Explain what automation can establish and what it cannot.
 
-Lead each finding with its effect on the user, then evidence, proposed change, effort/tradeoff, and verification. Separate defects from possible improvements and unknowns. Avoid fabricated maturity scores or universal thresholds.
+Keep findings compact: actionable defect, user impact, evidence, smallest useful fix, and verification. Separate intentional exceptions, optional improvements, and unknowns. Cite file locations for static findings; for executed proof, give the command, tested revision/artifact, working-tree differences, and result. Never attach results to a later revision. Close with each mechanism's depth: **referenced only / read / executed**, and what remains unchecked. Avoid scores or boilerplate process prescriptions.
