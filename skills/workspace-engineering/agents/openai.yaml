@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workspace Engineering"
+  short_description: "Review and build workspaces around real processes"
+  default_prompt: "Use $workspace-engineering to understand our process and review or build the workspace around it."

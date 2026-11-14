@@ -1,0 +1,9 @@
+{
+  "name": "sivipi-skills",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "check": "node --test scripts/check-skills.test.mjs && node scripts/check-skills.mjs"
+  }
+}
