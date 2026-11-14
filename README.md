@@ -32,14 +32,13 @@ The skill produces an evidence-based review or a working, validated improvement,
 
 ## Install
 
-This is a private repository. Authenticate with a GitHub account that has access, clone it, then install the selected skill from the local checkout using the [skills CLI](https://github.com/vercel-labs/skills):
+Install directly from this public repository using the [skills CLI](https://github.com/vercel-labs/skills):
 
 ```sh
-gh repo clone sivipi/skills sivan-skills
-DISABLE_TELEMETRY=1 npx skills add ./sivan-skills --skill workspace-engineering
+DISABLE_TELEMETRY=1 npx skills add sivipi/skills --skill workspace-engineering
 ```
 
-The installer requires Node 22.20+ and lets you choose the target agent. It installs into the current project by default; add `-g` for a global installation. In Codex, invoke it with `$workspace-engineering`; other agents use their own skill invocation syntax. Installation is separate from cloning; creating this repository does not change your installed skills.
+The installer requires Node 22.20+ and lets you choose the target agent. It installs into the current project by default; add `-g` for a global installation. In Codex, invoke it with `$workspace-engineering`; other agents use their own skill invocation syntax. No GitHub login or manual clone is needed.
 
 ## Add a skill
 
