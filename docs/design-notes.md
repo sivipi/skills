@@ -11,6 +11,8 @@ The first skill was developed from read-only inspection of four existing workspa
 
 Inspection covered shared instructions, relevant skills and process documentation, hook/workflow configuration, and available review records. It was not a fresh execution of the four workspaces, an audit of every remote setting, or a verification of all historical incidents.
 
-The skill therefore asks for evidence instead of a maturity score, starts with one complete task instead of a universal scaffold, and treats interviews and documents as valid entrypoints. It recommends the earliest useful feedback while retaining human judgment where it belongs.
+The skill therefore asks for evidence instead of a maturity score, starts with one complete task instead of a universal scaffold, and treats interviews and documents as valid entrypoints. Its main focus is code writing: it actively proposes a development baseline rather than only reflecting the existing process. Nontechnical workflows keep the same principles with checks appropriate to their artifacts.
+
+A second source review strengthened that baseline: the QA workspace contributed test-quality rules, independent expectations, and exact-resource cleanup; the builder studio contributed reusable knowledge and realistic guard-liveness probes; the product-team example contributed affected-flow test selection, a credential-free pre-push loop, draft readiness, and exact-revision release qualification. The skill retains these patterns without copying source-specific thresholds, release permissions, or private identities.
 
 The external references are acknowledged in the [collection README](../README.md). Their organization and problem-solving approach were considered; their instruction text and broad refactoring mandates were not copied.

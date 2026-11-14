@@ -1,6 +1,6 @@
 ---
 name: "workspace-engineering"
-description: "Review, improve, or build agent workspaces around a role and its process. Use for workspace audits, turning process docs or interviews into repeatable workflows, and connecting skills, rules, tools, and validation. Applies to software and nontechnical work; not a general code refactoring skill."
+description: "Review, improve, or build agent workspaces, primarily for writing code. Propose a concrete development process covering test authoring, local validation before push, CI merge gates, and delivery. Start from repos, process docs, or interviews; adapt the same principles to nontechnical work. Not a general code refactoring skill."
 ---
 
 # Workspace engineering
@@ -8,6 +8,8 @@ description: "Review, improve, or build agent workspaces around a role and its p
 Treat the workspace as a product for the person using it. Engineer the process that makes useful work repeatable, not just the prompt that gets one good result.
 
 The central question: **What does this person still have to remember, repair, or explain that the workspace should handle?**
+
+The primary use case is writing code with agents. Actively propose a development process, including what is missing from the current workspace; do not stop at describing existing instructions. For nontechnical roles, adapt the same feedback and acceptance principles to their deliverables.
 
 ## 1. Establish the job
 
@@ -35,6 +37,10 @@ Use [review](references/review.md) to examine the path and prioritize findings. 
 
 ## 3. Design the improvement
 
+Read the [baseline process](references/baseline.md) in both review and build modes. Use its software-development defaults unless the task is nontechnical, then use its adaptation guidance. For mixed workspaces, apply the coding baseline to code and helpers even when the end user is nontechnical.
+
+Make the proposed process concrete: trigger, steps, commands or tools, pass/fail criteria, failure response, owner, and completion evidence. Map each applicable baseline item to an existing mechanism, a recommended change, an explicit exception, or an unknown. Explain material deviations; do not silently omit a missing practice because the repo has never had it. Preserve stricter existing requirements.
+
 Group symptoms by their underlying cause. Prefer a shared utility, better input, clearer tool contract, or shorter procedure over adding another warning for the agent to remember. Remove redundant instructions and checks only when their purpose is preserved elsewhere.
 
 For each proposed change, specify:
@@ -52,7 +58,7 @@ Prioritize by user impact, recurrence, confidence, effort, and feedback delay. L
 
 ## 4. Review or implement
 
-For a **review**, deliver the current process in brief, the strongest existing mechanisms, prioritized findings with evidence, and the next useful step. State what could not be checked. A process-document-only review should distinguish proposed controls from controls known to exist.
+For a **review**, deliver the current process in brief, the proposed working process, prioritized findings with evidence, and the next useful step. Preserve strong existing mechanisms and state what could not be checked. A process-document-only review should distinguish proposed controls from controls known to exist.
 
 For a **build or improvement**, use [build](references/build.md). Implement the authorized scope end to end. If the user wants a new workspace but the role or deliverable is still unknown, resolve that before choosing the stack. Do not turn every process problem into a software project.
 

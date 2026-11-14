@@ -2,6 +2,8 @@
 
 Use the representative task to guide inspection. Do not read an entire repository or every transcript just because they exist. Start with entrypoint instructions, relevant skills, process docs, tool contracts, validation commands, hooks, release configuration, and recent evidence.
 
+Assess the [baseline process](baseline.md), including practices absent from the current documentation. For code-writing workspaces, explicitly check test authoring for changed behavior, bug regression tests, final-file local validation before push, and required CI before merge. Return a proposed development loop with actual commands or identified implementation gaps, not just observations about the current loop.
+
 ## Inspect the seams
 
 | Area | Questions that expose useful gaps |

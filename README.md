@@ -28,7 +28,14 @@ Use $workspace-engineering to implement the agreed local validation loop.
 Preserve our current review and release policies.
 ```
 
-The skill produces an evidence-based review or a working, validated improvement, depending on the request. It supports nontechnical work too: a useful check might inspect a scene's scale or preserve a client-approved version, rather than run a compiler.
+The primary focus is writing code with agents. The skill actively proposes a [baseline development process](skills/workspace-engineering/references/baseline.md):
+
+- Meaningful tests for new or changed behavior, and regression tests for bug fixes.
+- Relevant tests and static checks locally before pushing, with a fix-and-rerun loop on the final files.
+- Reusable validation commands, installed hooks, and verified required CI checks before merge.
+- Separate staging and release qualification, with evidence tied to the delivered revision.
+
+It recommends missing practices in review mode and implements the requested scope in build mode. Test scope, coverage thresholds, and human-review policies are adapted to the team; existing stricter requirements are preserved. For nontechnical work, the same principles become previews, artifact checks, recoverable versions, and human acceptance. Any supporting code still follows the development baseline.
 
 ## Install
 

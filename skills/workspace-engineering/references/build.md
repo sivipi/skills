@@ -2,6 +2,8 @@
 
 Use this once the user has asked for implementation. Complete that scope without asking them to approve routine reversible steps again.
 
+Implement the applicable [baseline process](baseline.md) within that scope. Make its steps discoverable in the target's instructions and skills, put deterministic mechanics in reusable commands, and wire hooks and CI where appropriate. A prose instruction to run tests is incomplete when the task is to build an enforced development loop. Verify wiring and report any remote settings or unavailable tools that remain unconfigured.
+
 ## Build one usable path
 
 For a new workspace, begin with one recurring task and make it work from request to accepted output. For an existing one, preserve its conventions and implement the selected improvements. Favor removing unnecessary handoffs over adding orchestration.
@@ -27,7 +29,7 @@ Place each check at the earliest stage that has enough information to make it me
 | Staging or preview | Validate the integrated result, realistic workflows, performance, or load when relevant. |
 | Release | Qualify the exact artifact or revision with additional expensive tests where justified, then check delivery and recovery. Heavy testing for a production release can run in isolation before deployment; it need not target live users. |
 
-Reuse validation commands across local and remote execution where practical. Keep test selection explicit: a full local suite may be right for a small project; a large project may need fast local coverage and a broader remote suite. Explain what each stage adds, its cost, and why it cannot usefully move earlier.
+Use the baseline's explicit test-selection policy and shared local/CI commands. Explain what each later stage adds, its cost, and why it cannot usefully move earlier.
 
 ## Verify the mechanism
 
