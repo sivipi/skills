@@ -42,10 +42,20 @@ It recommends missing practices in review mode and implements the requested scop
 Install directly from this public repository using the [skills CLI](https://github.com/vercel-labs/skills):
 
 ```sh
-DISABLE_TELEMETRY=1 npx skills add sivipi/skills --skill workspace-engineering
+npx skills add sivipi/skills --skill workspace-engineering
 ```
 
 The installer requires Node 22.20+ and lets you choose the target agent. It installs into the current project by default; add `-g` for a global installation. In Codex, invoke it with `$workspace-engineering`; other agents use their own skill invocation syntax. No GitHub login or manual clone is needed.
+
+### Optional telemetry opt-out
+
+The skills CLI collects anonymous installation telemetry by default, which contributes to the [skills.sh leaderboard](https://skills.sh/docs/faq). To opt out for this installation:
+
+```sh
+DISABLE_TELEMETRY=1 npx skills add sivipi/skills --skill workspace-engineering
+```
+
+The CLI also supports `DO_NOT_TRACK=1`. See its [telemetry documentation](https://github.com/vercel-labs/skills#telemetry) for details.
 
 ## Add a skill
 
